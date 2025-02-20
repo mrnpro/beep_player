@@ -26,7 +26,7 @@ class BeepPlayer(
     private var _isDisposed: Boolean = false
 
     init {
-        if (BuildConfig.DEBUG) {
+        if (app.iandis.beep_player.BuildConfig.DEBUG) {
             _soundPool.setOnLoadCompleteListener { _, soundId: Int, status: Int ->
                 if (status != 0) {
                     Log.d(this::class.java.simpleName, "Failed to load sound id: $soundId")
@@ -54,31 +54,30 @@ class BeepPlayer(
             } catch (e: Throwable) {
                 Log.d(this::class.java.simpleName, "Failed to load sound: $filePath", e)
             }
-
         }
     }
 
-    fun play(filePath: String) {
+    fun play(filePath: String, volume: Float = 1.0f) {
         if (_isDisposed) return
-        _maybePlay(filePath)
+        _maybePlay(filePath, volume)
     }
 
-    private fun _maybePlay(filePath: String) {
+    private fun _maybePlay(filePath: String, volume: Float) {
         val soundId: Int? = _soundIds[filePath]
         if (soundId == null) {
             Log.d(this::class.java.simpleName, "$filePath has not been loaded")
         } else {
-            _play(soundId)
+            _play(soundId, volume)
         }
     }
 
-    private fun _play(soundId: Int) {
+    private fun _play(soundId: Int, volume: Float) {
         launch {
             Log.d(this::class.java.simpleName, "Playing sound id: $soundId")
             val result: Int = _soundPool.play(
                 soundId,
-                1.0f,
-                1.0f,
+                volume,
+                volume,
                 1,
                 0,
                 1.0f

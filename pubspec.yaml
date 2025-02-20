@@ -1,22 +1,22 @@
 name: beep_player
-description: A plugin for playing single short audio asset file on Android and iOS
-version: 0.0.1
+description: A Flutter plugin for playing short audio beeps with support for Android and iOS platforms. Optimized for quick sound feedback and notifications.
+version: 0.0.2
 repository: https://www.github.com/iandis/beep_player
 issue_tracker: https://www.github.com/iandis/beep_player/issues
 
 environment:
-  sdk: ">=2.18.4 <3.0.0"
-  flutter: ">=2.5.0"
+  sdk: ">=3.0.0 <4.0.0"
+  flutter: ">=3.10.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  plugin_platform_interface: ^2.0.2
+  plugin_platform_interface: ^2.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^3.0.1
 
 flutter:
   plugin:
